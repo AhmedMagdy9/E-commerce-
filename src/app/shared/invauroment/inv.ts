@@ -1,4 +1,4 @@
 export let inv = {
     baseurl : 'https://ecommerce.routemisr.com',
-    host : 'http://localhost:4200'
+    host : 'https://e-commerce-7mjh.vercel.app'
 }
