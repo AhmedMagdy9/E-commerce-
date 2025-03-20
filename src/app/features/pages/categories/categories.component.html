@@ -1,0 +1,31 @@
+<h1 class="text-center py-20 dark:text-white text-gray-700 font-bold text-3xl">{{"all categories" | translate }}</h1>
+
+
+<div class="grid sm:grid-cols-1  md:grid-cols-2  xl:grid-cols-3 gap-3 w-10/12  mx-auto py-7">
+
+    @for (cat of allCat(); track $index) {
+
+        <div (click)="getSpecCat(cat._id , cat.name)"  class=" cardHover  text-center border border-gray-300 rounded-md   ">
+         <img class="w-full h-64" [src]="cat.image" [alt]="cat.name">
+         <h2  class="p-5 text-green-600 font-semibold text-2xl">{{cat.name}}</h2>
+        </div>
+    }
+
+</div>
+
+
+@defer ( when subCat() ) {
+<h1 class="text-center dark:text-white text-green-600 font-bold text-3xl">{{catname()}}</h1>
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-3/4 mx-auto py-10 text-center">
+   
+   @for (item of allSubCat(); track $index) {
+    <div class="cardHover p-5  border border-gray-300 " >
+        <h1>{{item.name}}</h1>
+        
+    </div>
+   }
+</div>
+}
+
+
+   

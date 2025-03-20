@@ -1,0 +1,133 @@
+<div class="py-20">
+
+  <div class="py-10 grid lg:grid-cols-3  gap-y-4">
+    <div > <img src="/images/Mobile login-pana.png" alt=""></div>
+    
+  <div class=" col-span-2 w-3/4   mx-auto  ">
+
+    <h1 class="text-4xl text-center py-3 text-gray-700">{{"register now" | translate }}</h1>
+  
+      <form  [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+  
+          <div #name class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"name" | translate }}</label>
+              <input formControlName="name" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            @if ( registerForm.get('name')?.touched && registerForm.get('name')?.errors) {
+              
+              @if(registerForm.get('name')?.getError('required')){
+                 <app-alert [alertData]="'  required' | translate  "></app-alert>
+              }
+              @else if (registerForm.get('name')?.getError('pattern')) {
+                <app-alert [alertData]="'The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters.'  | translate  "></app-alert>
+            }
+            }
+          
+          </div>  
+  
+          <div #email class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"email" | translate }}</label>
+              <input formControlName="email" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+  
+              @if ( registerForm.get('email')?.touched && registerForm.get('email')?.errors) {
+              
+                  @if(registerForm.get('email')?.getError('required')){
+  
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     
+                  }
+                  @else if (registerForm.get('email')?.getError('email')) {
+                    <app-alert [alertData]="'plase inter valid email' | translate "></app-alert>
+                     
+                  }
+                
+                }
+  
+  
+          </div>
+  
+          <div #password  class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
+              <input formControlName="password" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+              @if ( registerForm.get('password')?.touched && registerForm.get('password')?.errors) {
+              
+                  @if(registerForm.get('password')?.getError('required')){
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                  
+                  }
+                  @else if (registerForm.get('password')?.getError('pattern')) {
+                    <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate  "></app-alert>
+                      }
+                 
+                }
+  
+          </div>
+  
+          <div #rePassword class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"repassword" | translate }}</label>
+              <input formControlName="rePassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+  
+              @if ( registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.errors) {
+              
+                  @if(registerForm.get('rePassword')?.getError('required')){
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     
+                  }
+                  @else if (registerForm.get('rePassword')?.getError('pattern')) {
+                    <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate "></app-alert>
+                    }
+                }
+  
+               @if(registerForm.errors && registerForm.get('rePassword')?.touched){
+                <app-alert [alertData]="'password and rePassword not matched' | translate  "></app-alert>
+              
+               }
+  
+          </div>
+  
+          <div #phone class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"phone" | translate }}</label>
+              <input formControlName="phone" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+              
+              @if ( registerForm.get('phone')?.touched && registerForm.get('phone')?.errors) {
+              
+                  @if(registerForm.get('phone')?.getError('required')){
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     
+                  }
+                  @else if (registerForm.get('phone')?.getError('pattern')) {
+                    <app-alert [alertData]="'plase Enter a valid Egyptian number.' | translate "></app-alert>
+                    }
+                 
+                }
+  
+  
+          </div>
+
+  <div class="text-center">
+    
+  <button [disabled]="registerForm.invalid" class="btnSub ">{{"register" | translate }}
+  
+    @if (isLoading()) {
+      <i class="fa-solid fa-spinner fa-spin"></i>
+    }
+   
+  </button>
+  </div>
+  
+  @if (errorMessage().length > 0) {
+    
+  <div class="my-5 text-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    <span class="font-medium">{{errorMessage()}}</span> 
+  </div>
+  
+  }
+      </form>
+  
+  </div>
+  
+  </div>
+</div>

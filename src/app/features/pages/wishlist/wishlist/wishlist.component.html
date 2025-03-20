@@ -1,0 +1,29 @@
+
+
+@if (wishlistProduct()) {
+    <div class="w-3/4 mx-auto py-20">
+        <h1 class="text-center dark:text-white text-gray-700 font-bold text-3xl">{{"wish list" | translate }}</h1>
+        <h1 class="text-center dark:text-white mt-5 text-gray-700 font-bold text-3xl">Total Items : {{totalItem()}}</h1>
+@for (wishproduct of wishlistProduct(); track $index) {
+   
+
+<!-- =============================================================== -->
+<div class="grid sm:grid-cols-5 lg:grid-cols-5 items-center mx-auto gap-10 mt-3 py-3 hover:bg-gray-400 transition-all text-center  border-b-2 border-gray-600">
+    <div class="mx-auto"><img [src]="wishproduct.imageCover"class="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch"></div>
+    <div class="dark:text-white" ><p> {{wishproduct.title}}</p></div>
+
+    <div class="dark:text-white text-green-600 font-semibold"><p>{{wishproduct.price}} {{"EGP" | translate }} </p></div>
+    <div><a (click)="deleteWishProduct(wishproduct._id)" class="font-medium cursor-pointer hover:text-red-600 transition-all text-black dark:text-white dark:hover:text-red-600 hover:underline"><i class="fa-solid  fa-trash-can text-xl"></i></a></div>
+      <div> <button (click)="addToCart(wishproduct._id)" class="border-red-600 border py-3 px-6 hover:bg-red-600 transition-all dark:text-white hover:text-white">+ {{"add to cart" | translate }}</button></div>
+
+ </div>
+
+ 
+    }
+    
+</div>
+}
+
+
+  
+  

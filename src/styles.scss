@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btnSub{
+    @apply bg-green-300 px-5 py-3 rounded-full disabled:bg-green-950
+    
+    
+}
+.cardHover{
+    transition: all 0.5s;
+}
+
+.cardHover:hover{
+
+    box-shadow: 1px 1px 10px #4fa74f;
+}
+
+

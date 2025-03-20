@@ -1,0 +1,66 @@
+<h1 class="text-center py-20 dark:text-white text-gray-700 font-bold text-3xl">{{"all brands" | translate }}</h1>
+
+
+
+
+
+
+<div class="grid sm:grid-cols-1  md:grid-cols-2  xl:grid-cols-4 gap-3 w-10/12  mx-auto py-7">
+
+    @for (brand of allBrands(); track $index) {
+
+        <div   (click)="getSpecBrand(brand._id)" class=" cardHover dark:bg-white  text-center border border-gray-300 rounded-md   p-5 ">
+            
+
+         <img class="w-full" [src]="brand.image" [alt]="brand.name">
+         <h2 >{{brand.name}}</h2>
+
+        
+        </div>
+    
+
+  
+    }
+
+</div>
+
+
+
+@if (iscome()) {
+    @if ( specBrands()) {
+        
+<div class=" z-10 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center  bg-opacity-50 bg-black">
+    <div class=" max-2xl:w-3/4 bg-white w-1/4 text-center px-3  shadow-2xl left-1/2  rounded-lg">
+        <div (click)="cancelSpec()" class=" flex justify-end"><i  class="fa-solid fa-xmark text-2xl cursor-pointer"></i></div>
+        <img class="w-full" [src]="specBrands().image" alt="">
+        <div class="flex justify-around py-4">
+            <p class="text-lg font-semibold">{{specBrands().name}}</p>
+            <p class="text-lg font-semibold">{{specBrands().slug}}</p>
+        </div>
+        <p class="   text-white bg-black w-1/2 mx-auto mb-5"> created : {{specBrands().createdAt | date }} </p>
+    </div>
+</div>
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+

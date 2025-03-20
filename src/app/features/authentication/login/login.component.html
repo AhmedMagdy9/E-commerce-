@@ -1,0 +1,92 @@
+
+<div class="py-20">
+<div class="py-10 grid lg:grid-cols-3 gap-y-4   ">
+
+  <div>
+
+    <img src="/images/Mobile login-bro.png" alt="">
+  </div>
+
+  <div class=" col-span-2 w-3/4  px-8 py-4 mx-auto ">
+
+    <h1 class="text-4xl text-center py-5 text-gray-700"> {{"login" | translate }}</h1>
+  
+      <form  [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+  
+  
+          <div #email class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"email" | translate }}</label>
+              <input formControlName="email" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+  
+              @if ( loginForm.get('email')?.touched && loginForm.get('email')?.errors) {
+              
+                  @if(loginForm.get('email')?.getError('required')){
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     }
+                  @else if (loginForm.get('email')?.getError('email')) {
+                    <app-alert [alertData]="'plase inter valid email' | translate "></app-alert>
+                     }
+                
+                }
+  
+  
+          </div>
+  
+  
+          <div #password  class="mb-6">
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
+              <input formControlName="password" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+              @if ( loginForm.get('password')?.touched && loginForm.get('password')?.errors) {
+              
+                  @if(loginForm.get('password')?.getError('required')){
+                    <app-alert [alertData]="'  required' | translate  "></app-alert>
+                       }
+                  @else if (loginForm.get('password')?.getError('pattern')) {
+                    <app-alert [alertData]="'inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers' | translate  "></app-alert>
+                      }
+                 
+                }
+  
+          </div>
+  
+  
+          <div class="text-center">
+
+            <button [disabled]="loginForm.invalid" class="btnSub">{{"login" | translate }}
+  
+              @if (isLoading()) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+              }
+             
+            </button>
+          </div>
+  
+  
+  @if (errorMessage().length > 0) {
+    
+  <div class="my-5 text-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    <span class="font-medium">{{errorMessage()}}</span> 
+  </div>
+  
+  }
+      </form>
+  
+      <a routerLink="/forgetpassword" class=" block hover:text-blue-600 cursor-pointer text-blue-950 pt-5" >{{ "forgetpassword" | translate }}</a>
+       <a routerLink="/register" class="hover:text-blue-600 cursor-pointer text-blue-950" > <span class="text-black"> {{ "You don't have an account" | translate }} </span> {{ "register" | translate }}</a>
+       <div class="  py-5 text-gray-600 dark:text-white ">
+        <i class="fa-regular fa-square-caret-left text-xl mx-2"></i>
+        <a class="text-xl" routerLink="/home" >{{ "Back To Shoping" | translate }}</a>
+      </div>
+    </div>
+
+  
+</div>
+
+
+   
+    
+  </div>
+  
+  

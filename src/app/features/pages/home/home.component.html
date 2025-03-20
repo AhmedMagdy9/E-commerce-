@@ -1,0 +1,41 @@
+
+
+<app-owlcarousel [allProduct]="allProduct"></app-owlcarousel>
+
+
+<div class="w-10/12 m-auto py-10">
+
+  
+
+
+   
+
+
+    
+
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 my-10">
+
+    @if (isLogin()) {
+        
+        @for (product of allProduct; track $index) {
+        
+         
+        
+            <app-card  [wishlistProduct]="wishlistProduct"  [oneproduct]="product"></app-card>
+        
+        
+        }
+            }
+            @else {       
+                @for (product of allProduct; track $index) {
+                
+                 
+                
+                    <app-card  [oneproduct]="product"></app-card>
+                
+                
+                }}
+
+    </div>
+
+</div>

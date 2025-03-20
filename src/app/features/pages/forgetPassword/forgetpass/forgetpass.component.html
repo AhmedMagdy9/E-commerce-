@@ -1,0 +1,146 @@
+
+<div class="py-20">
+    
+<div class="py-10 grid lg:grid-cols-3  items-center  gap-y-4">
+    <div><img src="/images/Forgot password-bro.png" alt=""></div>
+  <div class=" col-span-2">
+      
+    @if (forget() === null) {
+    
+        <div class=" w-3/4  mx-auto  my-10">
+        
+            <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"email" | translate }}</label>
+        <input [formControl]="email" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+        
+        
+        @if ( email.touched && email.errors) {
+              
+          @if(email.getError('required')){
+
+            <app-alert [alertData]="'  required' | translate  "></app-alert>
+             
+          }
+          @else if (email.getError('email')) {
+            <app-alert [alertData]="'plase inter valid email' | translate "></app-alert>
+             }
+        
+        }
+        
+        
+        
+        
+        <div class="text-center py-5">
+            <button  [disabled]="email.invalid"  (click)="emailSubmit()" class="btnSub disabled:bg-green-950"> {{"send" | translate }}
+                
+                @if (isLoading()) {
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                  }
+                 </button>
+        </div>
+        </div>
+        
+        }
+        
+        @if (forget() === 'send code') {
+            
+            <div class=" w-3/4  mx-auto my-10">
+            <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"code" | translate }}</label>
+            <input [formControl]="code" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            
+            @if (code.touched && code.errors ) {   
+                   
+          @if(code.getError('required')){
+
+            <app-alert [alertData]="'  required' | translate  "></app-alert>
+             
+          }
+          @else if (code.getError('pattern')) {
+            <app-alert [alertData]="'plase inter only numbers' | translate "></app-alert>
+             
+          }
+            }
+            
+            <div class="text-center py-5">
+                
+                <button  [disabled]="code.invalid"  (click)="codeSubmit()" class="btnSub disabled:bg-green-950"> {{"send" | translate }}
+                    
+                    @if (isLoading()) {
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                      }
+                </button>
+            </div>
+            <a class="hover:text-blue-600 cursor-pointer text-blue-950"  (click)="reternEmail()">{{"Retray Send Email ?" | translate   }}</a>
+            </div>
+            
+            
+            }
+        
+        @if (forget() === 'change pass') {
+        
+            <div class=" w-3/4     mx-auto my-10">
+            
+            <form [formGroup]="changepass" (ngSubmit)="sendNewPass()" >
+        
+        
+                  <div #email class="mb-6">
+                      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"email" | translate }}</label>
+                      <input formControlName="email" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+          
+          
+                      @if ( changepass.get('email')?.touched && changepass.get('email')?.errors) {
+                      
+                          @if(changepass.get('email')?.getError('required')){
+                            <app-alert [alertData]="'  required' | translate  "></app-alert>
+                             }
+                          @else if (changepass.get('email')?.getError('email')) {
+                            <app-alert [alertData]="'plase inter valid email' | translate "></app-alert>
+                             }
+                        
+                        }
+          
+          
+                  </div>
+        
+        
+        
+                  <div   class="mb-6">
+                    <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"newpassword" | translate }}</label>
+                    <input formControlName="newPassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+        
+                    @if ( changepass.get('newPassword')?.touched && changepass.get('newPassword')?.errors) {
+                    
+                        @if(changepass.get('newPassword')?.getError('required')){
+                          <app-alert [alertData]="'  required' | translate  "></app-alert>
+                             }
+                        @else if (changepass.get('newPassword')?.getError('pattern')) {
+                          <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate  "></app-alert>
+                            }
+                       
+                      }
+        
+                </div>
+        
+        
+        
+                  
+            <div class="text-center py-5">
+                <button  [disabled]="changepass.invalid"  class="btnSub disabled:bg-green-950"> {{"send" | translate }} 
+                    
+                    @if (isLoading()) {
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                      }
+                </button>
+            </div>
+            
+            </form>
+            <a class="hover:text-blue-600 cursor-pointer text-blue-950"  (click)="reternEmail()">{{"Retray Send Email ?" | translate   }}</a>
+            </div>
+          
+            }
+  </div>
+</div>
+        
+    
+</div>
+
+

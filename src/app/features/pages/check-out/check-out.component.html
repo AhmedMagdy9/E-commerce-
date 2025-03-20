@@ -1,0 +1,64 @@
+
+<div class="py-20">
+    <div class=" lg:w-7/12  shadow-2xl rounded-lg p-8 mx-auto py- ">
+
+        <h1 class="text-4xl text-center py-3 text-green-700">{{ "Fill Your Adress" | translate }}</h1>
+    
+    <form  [formGroup]="checkOutForm"  >
+    
+        <div #details class="mb-6">
+            <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ "details" | translate }}</label>
+            <input formControlName="details" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            @if ( checkOutForm.get('details')?.touched && checkOutForm.get('details')?.errors) {
+              
+                @if(checkOutForm.get('details')?.getError('required')){
+                  <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     }
+                @else if (checkOutForm.get('details')?.getError('pattern')) {
+                  <app-alert [alertData]="'Only letters, with a minimum of 3 characters and a maximum of 20 characters.' | translate  "></app-alert>
+                    }
+               
+              }
+        
+        </div>  
+    
+        <div #city class="mb-6">
+            <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{ "city" | translate }}</label>
+            <input formControlName="city" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            @if ( checkOutForm.get('city')?.touched && checkOutForm.get('city')?.errors) {
+              
+                @if(checkOutForm.get('city')?.getError('required')){
+                  <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     }
+                @else if (checkOutForm.get('city')?.getError('pattern')) {
+                  <app-alert [alertData]="'Only letters, with a minimum of 3 characters and a maximum of 20 characters.' | translate "></app-alert>
+                    }
+               
+              }
+        
+        </div>  
+    
+        <div #phone class="mb-6">
+            <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{ "Phone" | translate }}</label>
+            <input formControlName="phone" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            @if ( checkOutForm.get('phone')?.touched && checkOutForm.get('phone')?.errors) {
+              
+                @if(checkOutForm.get('phone')?.getError('required')){
+                  <app-alert [alertData]="'  required' | translate  "></app-alert>
+                     }
+                @else if (checkOutForm.get('phone')?.getError('pattern')) {
+                  <app-alert [alertData]="'plase Enter a valid Egyptian number.' | translate "></app-alert>
+                    }
+              
+              }
+    
+        </div>
+        <div class="text-center flex justify-around">
+      
+            <button [disabled]="checkOutForm.invalid" (click)="checkOut()" class="btnSub "> {{ "Online Payment" | translate }}</button>
+            <div><button [disabled]="checkOutForm.invalid" (click)="cashOrder()" class="btnSub ">{{ "cash" | translate }}</button></div>
+            </div>
+    </form>
+    </div>
+    
+</div>

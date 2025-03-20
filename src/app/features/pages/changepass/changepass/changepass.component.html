@@ -1,0 +1,85 @@
+
+<h1 class="text-center py-20 dark:text-white text-gray-700 font-bold text-3xl">{{"Changepassword" | translate }}</h1>
+
+
+<div >
+  <div class=" grid lg:grid-cols-3  items-center gap-y-8">
+    <div > <img src="/images/Secure login-pana.png" alt=""></div>
+
+    <div class="  col-span-2 w-3/4   mx-auto ">
+
+      <form [formGroup]="updatepass" (ngSubmit)="sendUpdatePass()" >
+  
+  <div   class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"currentPassword" | translate }}</label>
+      <input formControlName="currentPassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+      @if ( updatepass.get('currentPassword')?.touched && updatepass.get('currentPassword')?.errors) {
+      
+          @if(updatepass.get('currentPassword')?.getError('required')){
+            <app-alert [alertData]="'  required' | translate  "></app-alert>
+               }
+          @else if (updatepass.get('currentPassword')?.getError('pattern')) {
+            <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate  "></app-alert>
+              }
+         
+        }
+  
+  </div>
+  
+  
+  <div   class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
+      <input formControlName="password" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+      @if ( updatepass.get('password')?.touched && updatepass.get('password')?.errors) {
+      
+          @if(updatepass.get('password')?.getError('required')){
+            <app-alert [alertData]="'  required' | translate  "></app-alert>
+          
+          }
+          @else if (updatepass.get('password')?.getError('pattern')) {
+            <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate  "></app-alert>
+              }
+         
+        }
+  
+  </div>
+  
+  <div  class="mb-6">
+      <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"repassword" | translate }}</label>
+      <input formControlName="rePassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+  
+  
+      @if ( updatepass.get('rePassword')?.touched && updatepass.get('rePassword')?.errors) {
+      
+          @if(updatepass.get('rePassword')?.getError('required')){
+            <app-alert [alertData]="'  required' | translate  "></app-alert>
+             
+          }
+          @else if (updatepass.get('rePassword')?.getError('pattern')) {
+            <app-alert [alertData]="'inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.' | translate  "></app-alert>
+            }
+        }
+  
+       @if(updatepass.errors && updatepass.get('rePassword')?.touched){
+        <app-alert [alertData]="'password and rePassword not matched' | translate  "></app-alert>
+      
+       }
+  
+  </div>
+  
+  
+  
+  <div class="text-center py-5">
+      <button  [disabled]="updatepass.invalid"  class="btnSub disabled:bg-green-950"> {{"send" | translate }}
+          
+        
+      </button>
+  </div>
+  </form>
+  </div>
+  </div>
+ 
+
+</div>

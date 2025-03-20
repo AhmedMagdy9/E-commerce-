@@ -1,0 +1,90 @@
+
+<!-- ====================================================================================== -->
+<div class="relative py-20 overflow-x-auto  sm:rounded-lg me-5">
+
+    <h1 class="text-center  dark:text-white text-gray-700 font-bold text-3xl">{{"cart" | translate }}</h1>
+    
+  
+ 
+
+<div class="text-[#dcb018] "><i class="fa-regular fa-square-caret-left text-2xl mx-2"></i>
+    <button class="mt-10 text-2xl font-semibold" (click)="toggleCart()">{{"cartInfo" | translate }}</button></div>
+
+ <div class="grid  md:grid-cols-4   w-full min-h-full ">
+
+ <div [class.col-span-3]="CartInf()" [class.col-span-4]="!CartInf()">
+    
+    @for (onecart of allCartProducts(); track $index) {
+            
+
+
+        <div class="   grid sm:grid-cols-5 lg:grid-cols-5 items-center  gap-10  py-3 hover:bg-gray-400 transition-all text-center  border-b-2 border-gray-600">
+           <div class="mx-auto"><img [src]="onecart.product.imageCover" class="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch"></div>
+           <div class="dark:text-white" ><p> {{onecart.product.title}}</p></div>
+           <div class="mx-auto">
+           <div class=" flex items-center">
+               <button (click)="updateProduct(onecart.product._id , onecart.count -1)" class="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"  type="button">
+                   <span  class="sr-only">Quantity button</span>
+           
+                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                       <path  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                   </svg>
+               </button>
+
+               <div>
+                   <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [value]="onecart.count" required />
+               </div>
+
+               <button (click)="updateProduct(onecart.product._id , onecart.count +1)" class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                   <span class="sr-only">Quantity button</span>
+                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                   </svg>
+               </button>
+
+           </div>
+           </div>
+           <div class="dark:text-white font-semibold text-green-600 "><p> {{ onecart.count *  onecart.price}} {{"EGP" | translate }}  </p></div>
+           <div><a (click)="removeProduct(onecart.product._id)"  class="font-medium cursor-pointer hover:text-red-600 transition-all text-black dark:text-white dark:hover:text-red-600 hover:underline"><i class="fa-solid  fa-trash-can text-xl"></i></a></div>
+
+        </div>
+        
+      }
+    </div>
+
+   @if(CartInf()){
+    <div class="col-span-4 md:col-span-1 text-white row-span-full rounded-t-md bg-[#48403D] shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
+       <div class="h-full">
+        <div class="   text-center  dark:border-gray-600 ">
+            <p class="text-center font-semibold text-2xl py-3 mb-5 rounded-t-md bg-[#dcb018]   dark:text-black  ">{{"cartInfo" | translate }}</p>
+            <p class="text-center font-semibold dark:text-white  ">{{"cartitems" | translate }} :  {{numOfCartItems()}} {{"items" | translate }} </p>
+        <p class="mt-5 dark:text-white font-semibold ">{{"total price" | translate }} : {{totalCartPrice()}} EGP</p>
+        @if (cartID != undefined) {     <button  [routerLink]="['/checkOut' , cartID()]"  class="bg-green-500  text-white p-3 rounded-md m-5" >{{"request order" | translate }}</button>
+        }
+        </div>
+       </div>
+      </div>
+   }
+  
+
+
+
+ </div>
+        
+ <div class="text-center m-5 hover:text-red-600 transition-all dark:text-white dark:hover:text-red-600  cursor-pointer">
+     <button (click)="clearAllProduct()" ><i class="fa-solid  fa-trash-can text-3xl"></i>
+     </button>
+     <p>{{"clear all" | translate }}</p>
+ 
+ </div>
+ 
+ </div>
+
+ <div class="py-5 text-gray-600 dark:text-white ">
+    <i class="fa-regular fa-square-caret-left text-xl mx-2"></i>
+    <a class="text-xl" routerLink="/home" >{{ "Back To Shoping" | translate }}</a>
+ </div>
+
+
+ 
+
