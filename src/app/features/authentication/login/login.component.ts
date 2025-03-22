@@ -17,6 +17,7 @@ export class LoginComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();
 
   isLoading:WritableSignal<boolean> = signal(false)
+  showPassword = signal(false);
   errorMessage:WritableSignal<string> = signal('')
 
 
@@ -25,6 +26,12 @@ export class LoginComponent implements OnDestroy {
   email : new FormControl(null ,[Validators.required , Validators.email]),
   password : new FormControl(null , [Validators.required , Validators.pattern(/^[A-Z][a-zA-Z0-9]{6,10}$/)]),  
   } , )
+
+ 
+
+  togglePassword() {
+    this.showPassword.set(!this.showPassword());
+  }
 
   loginSubmit(){
     if(this.loginForm.valid){

@@ -12,8 +12,12 @@
   
   <div   class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"currentPassword" | translate }}</label>
-      <input formControlName="currentPassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
-  
+      <div class="relative">
+        <input formControlName="currentPassword" id="default-input" [type]="showPassword.current() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+        <button type="button" (click)="togglePassword('current')" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
+          <i [class]="showPassword.current() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        </button>
+      </div>
       @if ( updatepass.get('currentPassword')?.touched && updatepass.get('currentPassword')?.errors) {
       
           @if(updatepass.get('currentPassword')?.getError('required')){
@@ -27,11 +31,14 @@
   
   </div>
   
-  
   <div   class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
-      <input formControlName="password" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
-  
+      <div class="relative">
+        <input formControlName="password" id="default-input" [type]="showPassword.new() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+        <button type="button" (click)="togglePassword('new')" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
+          <i [class]="showPassword.new() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        </button>
+      </div>
       @if ( updatepass.get('password')?.touched && updatepass.get('password')?.errors) {
       
           @if(updatepass.get('password')?.getError('required')){
@@ -48,8 +55,12 @@
   
   <div  class="mb-6">
       <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"repassword" | translate }}</label>
-      <input formControlName="rePassword" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
-  
+      <div class="relative">
+        <input formControlName="rePassword" id="default-input" [type]="showPassword.confirmNew() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+        <button type="button" (click)="togglePassword('confirmNew')" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
+          <i [class]="showPassword.confirmNew() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        </button>
+      </div>
   
       @if ( updatepass.get('rePassword')?.touched && updatepass.get('rePassword')?.errors) {
       
@@ -72,10 +83,7 @@
   
   
   <div class="text-center py-5">
-      <button  [disabled]="updatepass.invalid"  class="btnSub disabled:bg-green-950"> {{"send" | translate }}
-          
-        
-      </button>
+    <button  [disabled]="updatepass.invalid"  class="btnSub disabled:bg-green-950"> {{"send" | translate }}</button>
   </div>
   </form>
   </div>

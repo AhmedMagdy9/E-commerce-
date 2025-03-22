@@ -27,6 +27,7 @@ export class ForgetpassComponent  implements OnDestroy{
 
   forget: WritableSignal<string | null> = signal<string | null>(null);
  isLoading:WritableSignal<boolean> = signal(false)
+ showPassword = signal(false);
 
 
 constructor(private PlatformService:PlatformService){
@@ -92,6 +93,9 @@ constructor(private PlatformService:PlatformService){
       }
     })
     this.subscription.add(sub)
+  }
+  togglePassword() {
+    this.showPassword.set(!this.showPassword());
   }
   reternEmail(){
     this.forget.set(null) 

@@ -17,6 +17,8 @@ private router = inject(Router)
 
 
  isLoading:WritableSignal<boolean> = signal(false)
+ showPassword = signal(false);
+ showrePassword = signal(false);
 errorMessage:WritableSignal<string> = signal('')
 
 private subscription: Subscription = new Subscription();
@@ -27,6 +29,10 @@ private subscription: Subscription = new Subscription();
     rePassword : new FormControl(null ,[Validators.required , Validators.pattern(/^[A-Z][a-zA-Z0-9]{6,10}$/)]) ,
     phone : new FormControl(null ,[Validators.required , Validators.pattern(/^(01)[0125][0-9]{8}$/)]),
   } , this.confirmPass)
+  
+  togglePassword(field: 'showPassword' | 'showrePassword') {
+    this[field].set(!this[field]());
+  }
   confirmPass(form:AbstractControl):any
   {
     if (form.get('password')?.value === form.get('rePassword')?.value) {

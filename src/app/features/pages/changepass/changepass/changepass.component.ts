@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertComponent } from "../../../../shared/reUsable-comp/alerts/alert.component";
 import { TranslatePipe } from '@ngx-translate/core';
@@ -17,6 +17,11 @@ export class ChangepassComponent implements OnDestroy {
   private toastrService = inject(ToastrService)
   private router = inject(Router)
   private subscription: Subscription = new Subscription();
+  showPassword = {
+    current: signal(false),
+    new: signal(false),
+    confirmNew: signal(false),
+  };
   
   updatepass:FormGroup = new FormGroup({
     currentPassword : new FormControl(null , [Validators.required , Validators.pattern(/^[A-Z][a-zA-Z0-9]{6,10}$/)]), 
@@ -32,7 +37,6 @@ export class ChangepassComponent implements OnDestroy {
         return {'missmached' : true}
         }
     }
-
   sendUpdatePass(){
    let sub =  this.authenSerService.changePassApi(this.updatepass.value).subscribe({
      next : (res)=>{
@@ -54,6 +58,9 @@ export class ChangepassComponent implements OnDestroy {
   }
 })
 this.subscription.add(sub)
+  }
+  togglePassword(field: 'current' | 'new' | 'confirmNew') {
+    this.showPassword[field].set(!this.showPassword[field]());
   }
 
   ngOnDestroy(): void {
