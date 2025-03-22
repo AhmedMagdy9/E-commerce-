@@ -19,7 +19,7 @@ export class BrandsService {
     
       if (!this.$brands) {
     
-      this.$brands =   this.http.get(`${inv.baseurl}/api/v1/brands`).pipe(
+      this.$brands =   this.http.get(`${inv.baseurl}/api/v1/brands?limit=56`).pipe(
         shareReplay(1)
       )
         

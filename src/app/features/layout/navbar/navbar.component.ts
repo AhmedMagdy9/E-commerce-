@@ -3,12 +3,13 @@ import { PlatformService } from './../../../core/services/platform/platform.serv
 import { Component,  HostListener,  inject, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive,  } from '@angular/router';
 import { AuthenSerService } from '../../../core/services/authService/authen-ser.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, debounceTime, fromEvent, Subscription, throttleTime } from 'rxjs';
 import { DarkmodeService } from '../../../core/services/darkmode/darkmode.service';
 import { CountNumService } from '../../../core/services/countNum/count-num.service';
 import { CartService } from '../../../core/services/cart/cart.service';
 import { MyTranslateService } from '../../../core/services/myTranslate/my-translate.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { AsyncPipe } from '@angular/common';
 
 
 
@@ -16,13 +17,14 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ RouterLink  ,RouterLinkActive , TranslatePipe ],
+  imports: [ RouterLink  ,RouterLinkActive , TranslatePipe , AsyncPipe  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit  ,   OnDestroy{
   private authenSerService = inject(AuthenSerService)
  private  myTranslateService = inject(MyTranslateService)
+
 
     private router = inject(Router)
     private countNumService = inject(CountNumService)
@@ -34,7 +36,7 @@ export class NavbarComponent implements OnInit  ,   OnDestroy{
  
 
 isLogin:WritableSignal<boolean> = signal(false)
-isScrolled:WritableSignal<boolean> = signal(false)
+isScrolled = new BehaviorSubject<boolean>(false);
 lang:WritableSignal<boolean> = signal(true)
 logOut:WritableSignal<boolean> = signal(true)
 navCountNum:WritableSignal<number> = signal(0)
@@ -49,6 +51,8 @@ navCountNum:WritableSignal<number> = signal(0)
     this.countNav()
    this.navLinksCallCart()
     this.dark()
+    this.formScroll()
+    
   }
 
   navLinksCallCart(){
@@ -85,13 +89,23 @@ navCountNum:WritableSignal<number> = signal(0)
     
   }else{this.logOut.set(true)}
   }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrollPosition = window.scrollY;
-    this.isScrolled.set(scrollPosition > 40); 
+  private onWindowScroll() {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const newScrolledState = scrollPosition > 40;
+    const currentScrolledState = this.isScrolled.getValue();
+  
+    if (currentScrolledState !== newScrolledState) { 
+      this.isScrolled.next(newScrolledState);
+    }
   }
   
+  formScroll() {
+   if (this.PlatformService.cheekplatform()) {
+    fromEvent(window, 'scroll')
+    .pipe(debounceTime(30))
+    .subscribe(() => this.onWindowScroll());
+   }
+  }
   changeLang(lang: string) {
     this.myTranslateService.changeLang(lang)
     this.lang.set(true)

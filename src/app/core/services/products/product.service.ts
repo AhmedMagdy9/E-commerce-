@@ -23,7 +23,7 @@ getAllProductsHome( ):Observable <any>
 
   if (!this.$product) {
 
-  this.$product =  this.http.get(`${inv.baseurl}/api/v1/products`).pipe(
+  this.$product =  this.http.get(`${inv.baseurl}/api/v1/products?limit=56`).pipe(
     shareReplay(1)
   )
     
