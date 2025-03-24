@@ -39,7 +39,7 @@ ngOnInit(): void {
  let sub = this.ProductService.getAllProductsHome().subscribe({
       next : (res)=>{
         this.allProduct = res.data
-    
+       
       },
       error : (err)=>{console.log(err)}
     })

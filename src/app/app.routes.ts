@@ -11,11 +11,13 @@ import { RegisterComponent } from './features/authentication/register/register.c
 import { ProductDetilsComponent } from './features/pages/product-detils/product-detils.component';
 import { CheckOutComponent } from './features/pages/check-out/check-out.component';
 import { AllorderComponent } from './features/pages/allorder/allorder.component';
+import { ProductcatComponent } from './features/pages/product-category/productcat/productcat.component';
 
 
 export const routes: Routes = [
     {path:"" , redirectTo:"home" , pathMatch:"full"},
     {path:"home" , component:HomeComponent ,  title:'home'},
+    {path:"productcat/:catid" , component:ProductcatComponent ,  title:'products category'},
     {path:"cart" , component:CartComponent , canActivate:[urlGuardGuard], title:'cart'},
     {path:"products" , component:ProductComponent , canActivate:[urlGuardGuard], title:'products'},
     {path:"Categories" , component:CategoriesComponent , canActivate:[urlGuardGuard], title:'Categories'},

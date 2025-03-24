@@ -1,0 +1,16 @@
+
+<h1 class="text-center py-20 dark:text-white text-gray-700 font-bold text-3xl">
+    {{ catName() }}
+  </h1>
+  
+  <div class="w-10/12 m-auto py-20">
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 my-10">
+      @if (productscat().length) {
+        @for (item of productscat(); track $index) {
+          <app-card [oneproduct]="item"></app-card>
+        }
+      } @else {
+        <p class="text-center text-gray-500 text-xl col-span-4">{{"No products for this category" | translate }}</p>
+      }
+    </div>
+  </div>

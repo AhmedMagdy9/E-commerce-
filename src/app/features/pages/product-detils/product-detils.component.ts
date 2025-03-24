@@ -56,7 +56,6 @@ export class ProductDetilsComponent implements OnInit , OnDestroy  {
    
 
   pid = signal<string | null>(null);
-  // itemDetils!:Products
   itemDetils: WritableSignal<Products | null> = signal<Products | null>(null);
  
 

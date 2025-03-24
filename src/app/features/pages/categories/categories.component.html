@@ -5,10 +5,18 @@
 
     @for (cat of allCat(); track $index) {
 
-        <div (click)="getSpecCat(cat._id , cat.name)"  class=" cardHover  text-center border border-gray-300 rounded-md   ">
-         <img class="w-full h-64" [src]="cat.image" [alt]="cat.name">
+        <div   class=" cardHover  text-center border border-gray-300 rounded-md  group ">
+        <div (click)="getSpecCat(cat._id , cat.name)"> <img class="w-full h-64 cursor-pointer" [src]="cat.image" [alt]="cat.name"></div>
          <h2  class="p-5 text-green-600 font-semibold text-2xl">{{cat.name}}</h2>
+         <div  class=" translate-y-full  opacity-0 group-hover:-translate-y-2 group-hover:opacity-100 transition-all duration-[800ms] bg-black w-3/4 p-2 mx-auto  text-center rounded-sm  cursor-pointer">
+
+            <a >
+              <h4 [routerLink]="['/productcat' , cat._id]"  class="text-white">View products of this category</h4>
+            </a>
+      
+          </div>
         </div>
+       
     }
 
 </div>

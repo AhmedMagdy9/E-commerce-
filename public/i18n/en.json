@@ -62,6 +62,7 @@
      "password and rePassword not matched" : "password and rePassword not matched",
      "inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers." : "inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers.",
      "The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters." : "The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters.",
-     "plase inter only numbers" : "plase inter only numbers"
+     "plase inter only numbers" : "plase inter only numbers",
+     "No products for this category" : "No products for this category"
     
     }

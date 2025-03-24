@@ -3,9 +3,10 @@ import { CategoryService } from '../../../core/services/category/category.servic
 import { Icategory } from '../../../shared/interfaces/brands/interbrands';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-categories',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe , RouterLink],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
@@ -26,7 +27,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     let sub = this.categoryService.getAllCatApi().subscribe({
       next: (res) => {
         this.allCat.set(res.data)
-        console.log(res)
+     
       },
       error: (err) => { console.log(err) }
     })
@@ -38,7 +39,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         this.subCat.set(true) 
         this.allSubCat.set(res.data)
         this.catname.set(catname)
-        console.log(res)
+    
       },
       error: (err) => { console.log(err) }
     })

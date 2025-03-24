@@ -1,22 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import { computed, Injectable, signal } from '@angular/core';
+import { filter, map, Observable, ReplaySubject, shareReplay } from 'rxjs';
 import { inv } from '../../../shared/invauroment/inv';
+import { Products } from '../../../shared/interfaces/products';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
-
+private $product!:Observable<any> | null
 
 
 constructor( private http:HttpClient) { }
 
-private $product!:Observable<any> | null
 
 
+getProductsCatapi(catid: string): Observable<any[]> { 
+  return this.http.get<{ data?: any[] }>(`${inv.baseurl}/api/v1/products`).pipe(
+    map((res) =>  Array.isArray(res.data) ? res.data.filter((product) => product.category?._id === catid) : [])
+  );
+}
 
 getAllProductsHome( ):Observable <any>
 {
@@ -31,9 +35,6 @@ getAllProductsHome( ):Observable <any>
 
   return this.$product
 }
-
-
-
 
 getAllProducts(price:number = 100 ,page:number ):Observable <any>
 {
