@@ -34,7 +34,7 @@ ngOnInit(): void {
 
 toggleCart(){
  
-  this.CartInf.set(!this.CartInf()); // عند الضغط على الزرار يتم التبديل بين الإظهار والإخفاء
+  this.CartInf.set(!this.CartInf()); 
  
 }
 
@@ -44,8 +44,8 @@ getAllCart(){
 let sub =  this.cartService.getAllCartapi().subscribe({
   next :(res)=>{
 this.totalCartPrice.set(res.data.totalCartPrice) 
-this.allCartProducts.set(res.data.products) 
-this.cartID.set(res.cartId) 
+this.allCartProducts.set(res.data.products) ,
+this.cartID.set(res.cartId),
 this.numOfCartItems.set(res.numOfCartItems)
 console.log(res)
   },

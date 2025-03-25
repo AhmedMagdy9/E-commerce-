@@ -9,7 +9,7 @@ import { Products } from '../../../shared/interfaces/products';
   providedIn: 'root'
 })
 export class ProductService {
-private $product!:Observable<any> | null
+public $product!:Observable<any> | null
 
 
 constructor( private http:HttpClient) { }

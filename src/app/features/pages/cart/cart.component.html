@@ -52,15 +52,15 @@
       }
     </div>
 
+
    @if(CartInf()){
-    <div class="col-span-4 md:col-span-1 text-white row-span-full rounded-t-md bg-[#48403D] shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
+    <div class="col-span-4   md:col-span-1 row-span-full rounded-md  shadow-[0_2px_20px_rgba(0,0,0,0.9)]">
        <div class="h-full">
-        <div class="   text-center  dark:border-gray-600 ">
-            <p class="text-center font-semibold text-2xl py-3 mb-5 rounded-t-md bg-[#dcb018]   dark:text-black  ">{{"cartInfo" | translate }}</p>
+        <div class="  text-center  dark:border-gray-600 ">
+            <p class="text-center font-semibold text-2xl py-3 mb-5 rounded-t-md  bg-black  text-white dark:bg-white dark:text-black ">{{"cartInfo" | translate }}</p>
             <p class="text-center font-semibold dark:text-white  ">{{"cartitems" | translate }} :  {{numOfCartItems()}} {{"items" | translate }} </p>
-        <p class="mt-5 dark:text-white font-semibold ">{{"total price" | translate }} : {{totalCartPrice()}} EGP</p>
-        @if (cartID != undefined) {     <button  [routerLink]="['/checkOut' , cartID()]"  class="bg-green-500  text-white p-3 rounded-md m-5" >{{"request order" | translate }}</button>
-        }
+        <p class="mt-5 dark:text-white font-semibold  py-5">{{"total price" | translate }} : {{totalCartPrice()}} {{"EGP" | translate }}</p>
+        @if (cartID()) { <button  [routerLink]="['/checkOut' , cartID()]"  class="bg-black dark:bg-white dark:text-black  text-white p-3 rounded-md m-5" >{{"Pay now" | translate }}</button>}        
         </div>
        </div>
       </div>

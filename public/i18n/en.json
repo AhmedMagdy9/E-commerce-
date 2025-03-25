@@ -7,7 +7,7 @@
     "loguot" : " Loguot",
     "add to cart" : " add to cart",
     "total price" : " Total Price",
-    "request order" : " Request order",
+    "Pay now" : "Pay now",
     "clear all" : " clear all",
     "all products" : " All products",
     "all categories" : " All Categories",
@@ -64,5 +64,4 @@
      "The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters." : "The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters.",
      "plase inter only numbers" : "plase inter only numbers",
      "No products for this category" : "No products for this category"
-    
     }

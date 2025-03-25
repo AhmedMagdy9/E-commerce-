@@ -23,12 +23,39 @@ export class ProductcatComponent implements OnInit , OnDestroy{
   catName = signal<string>('Loading...');
   
   ngOnInit(): void {
+
+    if(this.productService.$product){
+      this.getProducts();
+    }else{this.getProductsapi();}
+
+  }
+
+  getProducts(){
     let sub = this.activatedRoute.paramMap.subscribe((params) => {
       let id = params.get('catid');
       if (id) {
         this.catid.set(id);
         
-        this.loadProducts(id);
+        let sub =    this.productService.$product?.subscribe({
+          next: (products) => {
+           this.productscat.set(products.data.filter((product: any) => product.category._id === this.catid())) 
+           this.catName.set(this.productscat()[0]?.category?.name);
+
+          },
+          error: (err) => console.error( err),
+        });
+        this.subscriptions.add(sub);
+      }
+    });
+    this.subscriptions.add(sub);
+  }
+
+  getProductsapi(){
+    let sub = this.activatedRoute.paramMap.subscribe((params) => {
+      let id = params.get('catid');
+      if (id) {
+        this.catid.set(id);
+       this.loadProducts(id);
       }
     });
     this.subscriptions.add(sub);
@@ -44,7 +71,7 @@ export class ProductcatComponent implements OnInit , OnDestroy{
     });
     this.subscriptions.add(sub); 
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe(); 
   }
