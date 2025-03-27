@@ -10,12 +10,14 @@ import { CountNumService } from '../../../core/services/countNum/count-num.servi
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LoopcrsalComponent } from "../../../shared/reUsable-comp/owlCur/owlcarousel/loopcarousal/loopcrsal/loopcrsal.component";
+import { CardComponent } from "../../../shared/card/card/card.component";
 
 
 
 @Component({
   selector: 'app-product-detils',
-  imports: [CarouselModule , TranslatePipe ]  ,
+  imports: [CarouselModule, TranslatePipe,  CardComponent]  ,
   templateUrl: './product-detils.component.html',
   styleUrl: './product-detils.component.scss'
 })
@@ -53,33 +55,80 @@ export class ProductDetilsComponent implements OnInit , OnDestroy  {
        },
        nav: true
      }
+     customOptions1: OwlOptions = {
+      loop: true,
+      mouseDrag: true,
+      touchDrag: false,
+      pullDrag: false,
+      rtl : true,
+      dots: false,
+      navSpeed: 700,
+      navText: ['', ''],
+      responsive: {
+        0: {
+          items: 1
+        },
+        400: {
+          items: 1
+        },
+        740: {
+          items: 2
+        },
+        940: {
+          items: 4
+        }
+      },
+      nav: true
+    }
    
 
   pid = signal<string | null>(null);
+  productscat = signal<Products[]>([]);
   itemDetils: WritableSignal<Products | null> = signal<Products | null>(null);
- 
 
+ ngOnInit(): void {
+  
+this.specProduct() // يتم استدعاء relatedProduct() تلقائياً بعد انتهاء specProduct()
 
-ngOnInit(): void {
-this.specProduct()
+}
+
+resetpro(){
+  this.specProduct() // يتم استدعاء relatedProduct() تلقائياً بعد انتهاء specProduct()
 }
 
 specProduct(){
   if (this.PlatformService.cheekplatform()) {
-    this.activatedRoute.paramMap.subscribe((p)=>{
+  let sub1 =  this.activatedRoute.paramMap.subscribe((p)=>{
       this.pid.set(p.get('id'))
   })
+  this.subscription.add(sub1)
   
-let sub =   this.ProductService.getSpecProduct(this.pid()).subscribe({
+let sub2 =   this.ProductService.getSpecProduct(this.pid()).subscribe({
     next: (res)=>{
     this.itemDetils.set(res.data) 
+   this.relatedProduct()
 
     },
     error: (err)=>{console.log(err)}
   })
-  this.subscription.add(sub)
+  this.subscription.add(sub2)
   
   }
+}
+
+relatedProduct(){
+
+  if (this.PlatformService.cheekplatform()) {
+    let sub =    this.ProductService.$product?.subscribe({
+      next: (products) => {
+       this.productscat.set(products.data.filter((product: any) => product.category._id === this.itemDetils()?.category._id)) 
+       console.log( this.productscat())
+
+      },
+      error: (err) => console.error( err),
+    });
+  this.subscription.add(sub)  }
+
 }
 
 addToCart(pid:string|undefined){

@@ -1,7 +1,7 @@
 <div class="py-20">
 
   <div class="py-10 grid lg:grid-cols-3  gap-y-4">
-    <div > <img src="/images/Mobile login-pana.png" alt=""></div>
+    <div > <img src="/images/Mobile login-pana.png" alt="register"></div>
     
   <div class=" col-span-2 w-3/4   mx-auto  ">
 
@@ -47,9 +47,9 @@
           </div>
   
           <div #password  class="mb-6">
-              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
+              <label for="default-input1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
               <div class="relative">
-                <input formControlName="password" id="default-input" [type]="showPassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+                <input formControlName="password" id="default-input1" [type]="showPassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
                 <button type="button" (click)="togglePassword('showPassword')" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
                   <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                 </button>
@@ -69,9 +69,9 @@
           </div>
   
           <div #rePassword class="mb-6">
-              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"repassword" | translate }}</label>
+              <label for="default-input2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"repassword" | translate }}</label>
               <div class="relative">
-                <input formControlName="rePassword" id="default-input" [type]="showrePassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+                <input formControlName="rePassword" id="default-input2" [type]="showrePassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
                 <button type="button" (click)="togglePassword('showrePassword')" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
                   <i [class]="showrePassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                 </button>

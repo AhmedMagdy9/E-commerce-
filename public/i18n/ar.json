@@ -63,5 +63,9 @@
       "inter valid password inter valid password First letter capital, and from 5 to 9 letters should be small, capital, or numbers." : "ادخل كلمة مرور صحيحة الحرف الاول كابتل ومن 5 الي 9 حروف يجب ان تكون صغيرة او كابتل او ارقام.",
       "The username must contain letters only. with a minimum of 3 characters and a maximum of 20 characters." : "يجب ان يحتوي اسم المستخدم علي حروف فقط. بحد ادني 3 احرف وبحد اقصي 20 حرف.",
       "plase inter only numbers" : "من فضلك ادخل ارقام فقط",
-      "No products for this category" : "لا توجد منتجات لهذه الفئة"
+      "No products for this category" : "لا توجد منتجات لهذه الفئة",
+      "View products of this category" : "عرض المنتجات لهذه الفئة",
+      "Search by name" : "البحث بالاسم",
+      "Search by price" : "البحث بالسعر",
+      "Similar Products" : "منتجات مشابهة"
     }

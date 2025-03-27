@@ -2,7 +2,7 @@
   
 
 
-<div class="py-20 ">
+<div class="pt-20  ">
   <div class="grid sm:grid-cols-1 md:grid-cols-4 md:w-8/12 m-auto rounded-lg py-20 ">
 
     <div class="grid grid-cols-1">  
@@ -36,5 +36,23 @@
     </div>
 </div>
 
+
+<div class="py-2">
+ <div class="flex items-center  ms-7">
+  <h1 class=" mx-2 py-5 dark:text-white text-gray-700 font-bold text-2xl">{{"Similar Products" | translate }}</h1>
+  <i class="fa-regular fa-square-caret-down mx-2 mt-1"></i>
+ </div>
+  <owl-carousel-o  [options]="customOptions1">
+
+    @for (item of productscat(); track $index) {
+   
+      <ng-template carouselSlide [id]="item.id">
+       <div (click)="resetpro()" class="m-7"> <app-card [oneproduct]="item"></app-card></div>
+      </ng-template>
+    }
+  
+  </owl-carousel-o>
+</div>
+  
 
 }

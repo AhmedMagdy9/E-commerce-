@@ -42,6 +42,7 @@ ngOnInit(): void {
     if (localStorage.getItem('userToken')) {
      this.wishlistService.wishlist$.subscribe((wishlist) => {
       this.flagRed.set(wishlist.some((item) => item._id === this.oneproduct._id));
+     
     });
   
     }

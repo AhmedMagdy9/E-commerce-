@@ -21,7 +21,7 @@ export const routes: Routes = [
     {path:"cart" , component:CartComponent , canActivate:[urlGuardGuard], title:'cart'},
     {path:"products" , component:ProductComponent , canActivate:[urlGuardGuard], title:'products'},
     {path:"Categories" , component:CategoriesComponent , canActivate:[urlGuardGuard], title:'Categories'},
-    {path:"productdetils/:id" , component:ProductDetilsComponent , title:'product Detils'} ,
+    {path:"productdetils/:id" , component:ProductDetilsComponent , title:'product Details'} ,
     {path:"brands" , component:BrandsComponent , canActivate:[urlGuardGuard], title:'brands'} ,
     {path:"wishlist" , loadComponent : ()=> import('./features/pages/wishlist/wishlist/wishlist.component').then(list => list.WishlistComponent) , canActivate:[urlGuardGuard], title:'wish list'} ,
     {path:"checkOut/:cartID" , component:CheckOutComponent , canActivate:[urlGuardGuard], title:'checkOut'} ,

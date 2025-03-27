@@ -1,13 +1,14 @@
 
 <div class="py-20">
-<div class="py-10 grid lg:grid-cols-3 gap-y-4   ">
+<div class="py-10 grid lg:grid-cols-3 gap-y-4    ">
 
   <div>
 
-    <img src="/images/Mobile login-bro.png" alt="">
+    <img src="/images/Mobile login-bro.png" alt="login">
   </div>
 
-  <div class=" col-span-2 w-3/4  px-8 py-4 mx-auto ">
+  
+  <div class=" col-span-2 w-3/4   py-4 mx-auto ">
 
     <h1 class="text-4xl text-center py-5 text-gray-700"> {{"login" | translate }}</h1>
   
@@ -35,9 +36,9 @@
   
   
           <div #password  class="mb-6">
-              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
+              <label for="default-input3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{"password" | translate }}</label>
               <div class="relative">
-                <input formControlName="password" id="default-input" [type]="showPassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
+                <input formControlName="password" id="default-input3" [type]="showPassword() ? 'text' : 'password'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"/>
                 <button type="button" (click)="togglePassword()" class="absolute right-3 top-1/2 transform -translate-y-1/2" >
                   <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                 </button>
@@ -84,10 +85,11 @@
         <i class="fa-regular fa-square-caret-left text-xl mx-2"></i>
         <a class="text-xl" routerLink="/home" >{{ "Back To Shoping" | translate }}</a>
       </div>
-    </div>
+   </div>
 
   
 </div>
+
 
 
    

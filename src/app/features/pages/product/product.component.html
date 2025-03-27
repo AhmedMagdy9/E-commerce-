@@ -2,12 +2,12 @@
 <h1 class="text-center py-20 dark:text-white text-gray-700 font-bold text-3xl">{{"all products" | translate }}</h1>
 
   
-<div class="w-3/4  mx-auto py-8 grid lg:grid-cols-2 gap-x-5">
+<div class="w-3/4  mx-auto py-8 grid lg:grid-cols-2 gap-5">
 
  
-    <input  [(ngModel)]="searchInput" placeholder="Search by name" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+    <input  [(ngModel)]="searchInput" [placeholder]="'Search by name' | translate" type="text"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
 
-    <input  [formControl]="priceInput"  placeholder="Search by price" type="text" id="default-input" class="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+    <input  [formControl]="priceInput"  [placeholder]="'Search by price' | translate " type="text"  class="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
 
 </div>
 <div class="w-10/12 m-auto py-10">
