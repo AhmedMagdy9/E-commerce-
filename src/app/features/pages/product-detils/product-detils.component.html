@@ -45,10 +45,13 @@
   <owl-carousel-o  [options]="customOptions1">
 
     @for (item of productscat(); track $index) {
+      @if( item.id != itemDetils()?._id){
+        <ng-template carouselSlide [id]="item.id">
+          <div  class="m-7"> <app-card [oneproduct]="item"></app-card></div>
+         </ng-template>
+      }
    
-      <ng-template carouselSlide [id]="item.id">
-       <div (click)="resetpro()" class="m-7"> <app-card [oneproduct]="item"></app-card></div>
-      </ng-template>
+      
     }
   
   </owl-carousel-o>

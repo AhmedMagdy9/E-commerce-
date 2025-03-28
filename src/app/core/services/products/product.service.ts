@@ -12,7 +12,11 @@ export class ProductService {
 public $product!:Observable<any> | null
 
 
-constructor( private http:HttpClient) { }
+constructor( private http:HttpClient) {
+  if (this.$product == null) {
+    this.getAllProductsHome()
+  }
+ }
 
 
 
