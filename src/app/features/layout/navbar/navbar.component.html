@@ -2,7 +2,7 @@
 <nav   [class.border-b]="isScrolled | async"
 [class.border-gray-200]="isScrolled | async"
 [class.bg-white]="isScrolled | async"
-[class.dark:bg-gray-900]="isScrolled | async"
+[class.dark:bg-gray-300]="isScrolled | async"
 [class.dark:border-gray-600]="isScrolled | async"
  class="  z-10  fixed w-full    ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-around  mx-auto  py-4">
@@ -37,7 +37,7 @@
         <div id="logRev"  (click)="disLog($event)" class="relative dark:text-white cursor-pointer" >
       <a  class=" py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0 md:dark:hover:text-green-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 font-semibold "><i class="fa-solid fa-user text-xl"></i></a>
       <i class="fa-regular fa-square-caret-down mx-2 mt-1"></i>
-      <div [class.opacity-0]="logOut()" class="bg-black   rounded-md absolute  ">
+      <div [class.opacity-0]="logOut()" class="bg-black   rounded-md absolute  w-32 ">
       <button (click)=" logout()"  class="block hover:text-green-400  px-2 transition-all rounded-md text-white pt-4 pb-1" >{{"loguot" | translate }}  <i class="fa-regular fa-square-caret-right mt-1"></i></button>
         <button routerLink="/changepass"  class="block hover:text-green-400  px-2 transition-all rounded-md text-white pb-4 pt-1" >{{"Change Password" | translate }}</button>
        </div>

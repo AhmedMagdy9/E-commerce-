@@ -17,10 +17,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 
-// withHashLocation() ,
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter( routes ,  withViewTransitions(),   withInMemoryScrolling({scrollPositionRestoration : "enabled"})), provideClientHydration(withEventReplay()),
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter( routes , withHashLocation() ,  withViewTransitions(),   withInMemoryScrolling({scrollPositionRestoration : "enabled"})), provideClientHydration(withEventReplay()),
 
     provideHttpClient( withFetch() ,  withInterceptors([headerInterceptor , loadingInterceptor])),
 
